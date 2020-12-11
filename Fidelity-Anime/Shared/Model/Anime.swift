@@ -71,4 +71,5 @@ enum AnimeType: String, Codable {
     case special = "Special"
     case tv = "TV"
     case music = "Music"
+    case none
 }

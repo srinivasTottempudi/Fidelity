@@ -54,7 +54,9 @@ struct SearchView: View {
                         Spacer()
                     }
                 case .success:
-                    ListView(results: viewModel.renderModel)
+                    VStack {
+                        ListView(results: viewModel.renderModel)
+                    }
                 }
 
             }.navigationBarTitle(Text("Search"))
