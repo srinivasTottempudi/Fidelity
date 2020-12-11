@@ -18,20 +18,40 @@ struct AnimeView: View {
                 placeholder: { Text("Loading ...") },
                 image: { Image(uiImage: $0).resizable() }
             )
-            .frame(width: 100, height: 100)
+            .frame(width: 100, height: 150)
 
-            VStack {
+            VStack(alignment: .leading) {
 
                 Text(anime.title)
-                if anime.isAiring {
-                    Text(anime.title)
+                    .fontWeight(.bold)
+                    .font(.largeTitle)
+                HStack {
+                    HStack {
+                    Text("Score:")
+                        .foregroundColor(.gray)
+                    Text(String(format:"%.2f", anime.score)).foregroundColor(.blue)
+                    }
                 }
-                Text(anime.title)
+
             }
-            if let rating = anime.rating {
-                RatingView(rating: rating)
+            Spacer()
+            VStack(alignment: .center) {
+                if anime.isAiring {
+                    Text("Airing")
+                        .foregroundColor(.red)
+                        .fontWeight(.bold)
+                        .padding(.all, 5)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.red, lineWidth: 4)
+                        )
+                }
+                if let rating = anime.rating {
+                    RatingView(rating: rating)
+
+                }
             }
-        }
+        }.padding(.trailing, 10)
     }
 }
 
