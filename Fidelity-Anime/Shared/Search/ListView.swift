@@ -13,7 +13,9 @@ struct ListView: View {
 
     var body: some View {
         List(results,  id: \.id) { renderModel in
-            AnimeView(anime: renderModel)
+            NavigationLink(destination: AnimeDetailView(anime: renderModel)) {
+                AnimeView(anime: renderModel)
+            }
         }
     }
 }

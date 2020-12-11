@@ -41,6 +41,8 @@
 		6E89B9FF25829AAD004BAEEA /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E89B9FD25829AAD004BAEEA /* AsyncImage.swift */; };
 		6ED9560F2583AE6E00715140 /* SearchViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED9560E2583AE6E00715140 /* SearchViewState.swift */; };
 		6ED956102583AE6E00715140 /* SearchViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED9560E2583AE6E00715140 /* SearchViewState.swift */; };
+		6ED9561A2583B20A00715140 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED956192583B20A00715140 /* RatingView.swift */; };
+		6ED9561B2583B20A00715140 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED956192583B20A00715140 /* RatingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +90,7 @@
 		6E89B9F225829A9F004BAEEA /* ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		6E89B9FD25829AAD004BAEEA /* AsyncImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
 		6ED9560E2583AE6E00715140 /* SearchViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewState.swift; sourceTree = "<group>"; };
+		6ED956192583B20A00715140 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,6 +231,7 @@
 				6E89B9C1258276B9004BAEEA /* AnimeView.swift */,
 				6E89B9C8258276C6004BAEEA /* AnimeDetailView.swift */,
 				6E89B9CF25827A6D004BAEEA /* AnimeRenderModel.swift */,
+				6ED956192583B20A00715140 /* RatingView.swift */,
 			);
 			path = Anime;
 			sourceTree = "<group>";
@@ -411,6 +415,7 @@
 				6ED9560F2583AE6E00715140 /* SearchViewState.swift in Sources */,
 				6E89B9902581BA5F004BAEEA /* NetworkService.swift in Sources */,
 				6E89B9972581BB93004BAEEA /* SearchViewModel.swift in Sources */,
+				6ED9561A2583B20A00715140 /* RatingView.swift in Sources */,
 				6E89B9D025827A6D004BAEEA /* AnimeRenderModel.swift in Sources */,
 				6E89B9F325829A9F004BAEEA /* EnvironmentValues+ImageCache.swift in Sources */,
 				6E89B9772581B6F3004BAEEA /* Fidelity_AnimeApp.swift in Sources */,
@@ -433,6 +438,7 @@
 				6ED956102583AE6E00715140 /* SearchViewState.swift in Sources */,
 				6E89B9912581BA5F004BAEEA /* NetworkService.swift in Sources */,
 				6E89B9982581BB93004BAEEA /* SearchViewModel.swift in Sources */,
+				6ED9561B2583B20A00715140 /* RatingView.swift in Sources */,
 				6E89B9D125827A6D004BAEEA /* AnimeRenderModel.swift in Sources */,
 				6E89B9F425829A9F004BAEEA /* EnvironmentValues+ImageCache.swift in Sources */,
 				6E89B9782581B6F3004BAEEA /* Fidelity_AnimeApp.swift in Sources */,

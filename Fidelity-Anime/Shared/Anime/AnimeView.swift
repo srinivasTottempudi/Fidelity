@@ -18,8 +18,7 @@ struct AnimeView: View {
                 placeholder: { Text("Loading ...") },
                 image: { Image(uiImage: $0).resizable() }
             )
-            .aspectRatio(contentMode: .fit)
-            .frame(width: 100)
+            .frame(width: 100, height: 100)
 
             VStack {
 
@@ -29,17 +28,9 @@ struct AnimeView: View {
                 }
                 Text(anime.title)
             }
-
-            Text(anime.rating)
-                .fontWeight(.bold)
-                //.font(.callout)
-                .font(.system(size: 8))
-                .foregroundColor(.purple)
-                .padding(.all, 5)
-                .overlay(
-                    Capsule(style: .continuous)
-                        .stroke(Color.purple, style: StrokeStyle(lineWidth: 2, dash: [4]))
-                )
+            if let rating = anime.rating {
+                RatingView(rating: rating)
+            }
         }
     }
 }

@@ -14,7 +14,8 @@ struct AnimeRenderModel: Identifiable, Hashable {
     var url: String
     var imageURL: URL
     var isAiring: Bool
-    var rating: String
+    var rating: Rated?
+    var synopsis: String
 
     //Initializing render model with DataModel (Anime)
     init(anime: Anime) {
@@ -23,7 +24,8 @@ struct AnimeRenderModel: Identifiable, Hashable {
         self.url =  anime.imageURL
         self.imageURL = URL(string: anime.imageURL)!
         self.isAiring = anime.airing
-        self.rating = anime.rated?.rawValue ?? ""
+        self.rating = anime.rated
+        self.synopsis = anime.synopsis
     }
 
     // Demo remder model for Preview
@@ -33,6 +35,7 @@ struct AnimeRenderModel: Identifiable, Hashable {
         self.url = "https://cdn.myanimelist.net/images/anime/10/11244.jpg?s=04a45f30a2d3fa666388fcb5dab37750"
         self.imageURL = URL(string: "https://cdn.myanimelist.net/images/anime/10/11244.jpg?s=04a45f30a2d3fa666388fcb5dab37750")!
         self.isAiring = true
-        self.rating = "PG"
+        self.rating = .pg13
+        self.synopsis = "This is synopsis"
     }
 }
