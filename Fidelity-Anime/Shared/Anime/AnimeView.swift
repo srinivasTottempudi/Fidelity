@@ -22,12 +22,24 @@ struct AnimeView: View {
             .frame(width: 100)
 
             VStack {
+
                 Text(anime.title)
                 if anime.isAiring {
-                    Text("Airing Now")
+                    Text(anime.title)
                 }
                 Text(anime.title)
             }
+
+            Text(anime.rating)
+                .fontWeight(.bold)
+                //.font(.callout)
+                .font(.system(size: 8))
+                .foregroundColor(.purple)
+                .padding(.all, 5)
+                .overlay(
+                    Capsule(style: .continuous)
+                        .stroke(Color.purple, style: StrokeStyle(lineWidth: 2, dash: [4]))
+                )
         }
     }
 }

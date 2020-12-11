@@ -11,8 +11,7 @@ import SwiftUI
 struct Fidelity_AnimeApp: App {
     var body: some Scene {
         WindowGroup {
-            SearchView(viewModel: SearchViewModel(api: NetorkService()),
-                       text: .constant(""))
+            SearchView(viewModel: SearchViewModel(api: NetorkService()))
         }
     }
 }

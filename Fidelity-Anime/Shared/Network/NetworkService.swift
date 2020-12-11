@@ -9,7 +9,11 @@ import Foundation
 import Combine
 
 
+/// Network servicable that can be passed around objects/classes
 protocol NetworkServicable {
+    /// Search method that makes an API call to fetch results
+    /// - Parameter searchString: Text that need to be searched.
+    /// - Returns: Publisher that emits result object
     func search(_ searchString: String) -> AnyPublisher<Result, Error>
 }
 
@@ -23,7 +27,7 @@ class NetorkService: NetworkServicable {
 
     let baseUrl = URL(string: "https://api.jikan.moe/v3/search/anime")
 
-    public func get<T: Decodable>(_ request: URLRequest) -> AnyPublisher<Response<T>, Error> {
+    private func get<T: Decodable>(_ request: URLRequest) -> AnyPublisher<Response<T>, Error> {
         return URLSession.shared
             .dataTaskPublisher(for: request)
             .tryMap { result -> Response<T> in
@@ -34,7 +38,10 @@ class NetorkService: NetworkServicable {
             .eraseToAnyPublisher()
     }
 
-    func search(_ searchString: String) -> AnyPublisher<Result, Error> {
+    /// Search method that makes an API call to fetch results
+    /// - Parameter searchString: Text that need to be searched.
+    /// - Returns: Publisher that emits result object
+    public func search(_ searchString: String) -> AnyPublisher<Result, Error> {
 
         guard let baseURL = baseUrl,
               var components = URLComponents(url: baseURL, resolvingAgainstBaseURL: true) else {

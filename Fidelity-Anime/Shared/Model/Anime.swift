@@ -13,7 +13,7 @@
 
 import Foundation
 
-// MARK: - Welcome
+// MARK: - Result
 struct Result: Codable {
     let requestHash: String
     let requestCached: Bool
@@ -30,7 +30,7 @@ struct Result: Codable {
     }
 }
 
-// MARK: - Result
+// MARK: - Anime
 struct Anime: Codable, Equatable {
     let malID: Int
     let url: String

@@ -10,50 +10,52 @@ import Combine
 
 class SearchViewModel: ObservableObject {
 
-    @Published var animeMovies: [Anime]?
     var renderModel: [AnimeRenderModel] = []
     @Published var searchString = ""
+    @Published var viewState: SearchViewState = .initialSearch
 
-    @Published var viewState: SearchViewState = .noResults("Initial Search")
-
-    var cancellationToken = Set<AnyCancellable>()
+    var anyCancellable = Set<AnyCancellable>()
 
     var api: NetworkServicable
 
     init(api: NetworkServicable) {
         self.api = api
+        $searchString
+            .debounce(for: 0.3, scheduler: DispatchQueue.main)
+            .removeDuplicates()
+            .filter { !$0.isEmpty && $0.first != " " }
+            .sink { result in
+                self.getSearchResults(for: result)
+        }.store(in: &anyCancellable)
+
     }
 
 }
 
 extension SearchViewModel {
 
-    func getSearchResults(for searchText: String) {
+    private func getSearchResults(for searchText: String) {
+
         api.search(searchText)
             .sink(receiveCompletion: { (completion) in
                 switch completion {
                 case .failure:
                     self.viewState = .error
                 case .finished:
-                    self.viewState = .anime([])
+                    break
                 }
             }) { [self] result in
 
                 if result.results.count == 0 {
-                    self.viewState = .noResults("No Search results")
+                    self.viewState = .noResults(searchText)
                 }
                 else {
-                    self.renderModel = self.mapToRenderModel(animes: result.results)
-                    self.viewState = .anime(self.mapToRenderModel(animes: result.results))
+                    self.renderModel = result.results.map { AnimeRenderModel(anime: $0) }
+                    self.viewState = .success
                 }
             }
-            .store(in: &cancellationToken)
+            .store(in: &anyCancellable)
     }
-
-    func mapToRenderModel(animes: [Anime]) -> [AnimeRenderModel] {
-        animes.map { AnimeRenderModel(anime: $0) }
-    }
-
 }
 
 enum SomeError: Error {
