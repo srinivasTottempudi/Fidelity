@@ -23,7 +23,7 @@ class SearchViewModel: ObservableObject {
         $searchString
             .debounce(for: 0.3, scheduler: DispatchQueue.main)
             .removeDuplicates()
-            .filter { !$0.isEmpty && $0.first != " " }
+            .filter { !$0.isEmpty && $0.first != " " && $0.count > 2 }
             .sink { result in
                 self.getSearchResults(for: result)
         }.store(in: &anyCancellable)
