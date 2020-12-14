@@ -43,10 +43,12 @@ struct AnimeDetailView : View {
                     }
                 }
                 VStack(alignment: .center,spacing: 15) {
-                    Text(anime.synopsis)
-                        .foregroundColor(.primary)
-                        .font(.body)
-                        .lineSpacing(14)
+                    if let synopsis = anime.synopsis {
+                        Text(synopsis)
+                            .foregroundColor(.primary)
+                            .font(.body)
+                            .lineSpacing(14)
+                    }
                 }.padding(.all)
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0,maxHeight: .infinity, alignment: .topLeading)
             }

@@ -27,9 +27,12 @@ struct AnimeView: View {
                     .font(.largeTitle)
                 HStack {
                     HStack {
-                    Text("Score:")
-                        .foregroundColor(.gray)
-                    Text(String(format:"%.2f", anime.score)).foregroundColor(.blue)
+                        if let score = anime.score {
+                            Text("Score:")
+                                .foregroundColor(.gray)
+                            Text(String(format:"%.2f", score)).foregroundColor(.blue)
+                        }
+
                     }
                 }
 

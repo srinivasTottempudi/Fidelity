@@ -14,15 +14,15 @@ struct AnimeRenderModel: Identifiable, Hashable {
     var imageURL: URL
     var isAiring: Bool
     var rating: Rated?
-    var synopsis: String
-    var score: Double
+    var synopsis: String?
+    var score: Double?
 
     //Initializing render model with DataModel (Anime)
     init(anime: Anime) {
         self.id = String(anime.malID)
         self.title = anime.title
         self.imageURL = URL(string: anime.imageURL)!
-        self.isAiring = anime.airing
+        self.isAiring = anime.airing ?? false
         self.rating = anime.rated
         self.synopsis = anime.synopsis
         self.score = anime.score

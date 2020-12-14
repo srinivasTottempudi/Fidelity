@@ -15,11 +15,11 @@ import Foundation
 
 // MARK: - Result
 struct Result: Codable {
-    let requestHash: String
+    let requestHash: String?
     let requestCached: Bool
-    let requestCacheExpiry: Int
+    let requestCacheExpiry: Int?
     let results: [Anime]
-    let lastPage: Int
+    let lastPage: Int?
 
     enum CodingKeys: String, CodingKey {
         case requestHash = "request_hash"
@@ -32,18 +32,18 @@ struct Result: Codable {
 
 // MARK: - Anime
 struct Anime: Codable, Equatable {
-    let malID: Int
-    let url: String
-    let imageURL: String
-    let title: String
-    let airing: Bool
-    let synopsis: String
-    let type: AnimeType
-    let episodes: Int
-    let score: Double
-    let startDate, endDate: String?
-    let members: Int
-    let rated: Rated?
+    var malID: Int
+    var title: String
+    var imageURL: String
+    var url: String?
+    var airing: Bool?
+    var synopsis: String?
+    var type: AnimeType?
+    var episodes: Int?
+    var score: Double?
+    var startDate, endDate: String?
+    var members: Int?
+    var rated: Rated?
 
     enum CodingKeys: String, CodingKey {
         case malID = "mal_id"
@@ -54,6 +54,29 @@ struct Anime: Codable, Equatable {
         case endDate = "end_date"
         case members, rated
     }
+
+
+    init(from decoder: Decoder) throws {
+
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        malID = try container.decode(Int.self, forKey: .malID)
+        title = try container.decode(String.self, forKey: .title)
+        imageURL = try container.decode(String.self, forKey: .imageURL)
+
+        url = try? container.decode(String.self, forKey: .url)
+        airing = try? container.decode(Bool.self, forKey: .airing)
+        synopsis = try? container.decode(String.self, forKey: .synopsis)
+        type =  try? container.decode(AnimeType.self, forKey: .synopsis)
+        episodes =  try? container.decode(Int.self, forKey: .episodes)
+        score =  try? container.decode(Double.self, forKey: .score)
+        startDate =  try? container.decode(String.self, forKey: .startDate)
+        endDate =  try? container.decode(String.self, forKey: .endDate)
+        members =  try? container.decode(Int.self, forKey: .members)
+        rated =  try? container.decode(Rated.self, forKey: .rated)
+        }
+
+
 }
 
 enum Rated: String, Codable {
